@@ -284,7 +284,7 @@ bool BaseAssembler<T>::assembleScans(AssembleScans::Request& req, AssembleScans:
   {
     i++ ;
   }
-  unsigned int start_index = i ;
+  unsigned int start_index = 0 ;                                                      // the start of queue
 
   unsigned int req_pts = 0 ;                                                          // Keep a total of the points in the current request
   // Find the end of the request
@@ -294,7 +294,7 @@ bool BaseAssembler<T>::assembleScans(AssembleScans::Request& req, AssembleScans:
     req_pts += (scan_hist_[i].points.size ()+downsample_factor_-1)/downsample_factor_ ;
     i += downsample_factor_ ;
   }
-  unsigned int past_end_index = i ;
+  unsigned int past_end_index = scan_hist_.size() ;                                  // the end of queue 
 
   if (start_index == past_end_index)
   {
